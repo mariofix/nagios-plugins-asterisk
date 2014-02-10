@@ -24,8 +24,12 @@
 # Ave, Cambridge, MA 02139, USA.
 #
 
-
-ASTPID=`cat /var/run/asterisk/asterisk.pid`
+PIDFILE="/var/run/asterisk/asterisk.pid"
+if [ ! -f $PIDFILE ]; then
+	echo "CRITICAL - PIDFILE does not exist, maybe asterisk is not running"
+	exit 1
+fi
+ASTPID=`cat $PIDFILE`
 ASTRUN=`ps --no-heading p $ASTPID | wc -l`
 
 if [ $ASTRUN = "1"  ]; then
