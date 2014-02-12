@@ -37,5 +37,5 @@ if [ $ASTRUN = "1"  ]; then
 	exit 0
 else
 	echo "CRITICAL - Asterisk is not running"
-	exit 1
+	exit 2
 fi

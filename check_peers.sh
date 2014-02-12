@@ -70,11 +70,11 @@ PEERSOFFLINE=`echo $ASTLINE | awk '{print $7}'`
 
 if [ $PEERSONLINE -lt $ONLINE_CRITICAL ]; then
 	echo "CRITICAL - $PEERSONLINE Peers online"
-	exit 1
+	exit 2
 fi
 if [ $PEERSOFFLINE -gt $OFFLINE_CRITICAL ]; then
 	echo "CRITICAL - $PEERSOFFLINE Peers offline"
-	exit 1
+	exit 2
 fi
 if [ $PEERSONLINE -lt $ONLINE_WARNING ]; then
 	echo "WARNING - $PEERSONLINE Peers online"
