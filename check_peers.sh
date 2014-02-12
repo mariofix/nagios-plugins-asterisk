@@ -33,8 +33,13 @@ ONLINE_WARNING=10
 ONLINE_CRITICAL=1
 OFFLINE_WARNING=100
 OFFLINE_CRITICAL=110
+TECH="sip"
 while test $# -gt 0; do
 	case "$1" in
+		-tech)
+			TECH=$2
+			shift
+			;;
 		-on-w)
 			ONLINE_WARNING=$2
 			shift
@@ -59,7 +64,7 @@ while test $# -gt 0; do
 done
 
 ASTBIN="/usr/sbin/asterisk"
-ASTLINE=`$ASTBIN -rx 'sip show peers' | grep 'sip peers'`
+ASTLINE=`$ASTBIN -rx '$TECH show peers' | grep 'sip peers'`
 PEERSONLINE=`echo $ASTLINE | awk '{print $5}'`
 PEERSOFFLINE=`echo $ASTLINE | awk '{print $7}'`
 
